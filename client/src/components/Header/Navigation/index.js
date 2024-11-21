@@ -8,20 +8,24 @@ import axios from "axios";
 
 const Navigation = () => {
 
-    const [category, setCategory] = useState([]);
     const [isOpenSidebar, setIsOpenSidebar] = useState(false);
 
+    // try
+
+    const [category, setCategory] = useState([]);
+
     useEffect(() => {
-        const fetchCategory = async () => {
-            try {
-                const response = await axios.get('http://localhost:8080/api/category');
-                setCategory(response.data);
-            } catch (error) {
-                console.error('Error fetching categories:', error);
-            }
+        const fetchData = async () => {
+            const result = await fetch('http://localhost:8080/api/category');
+            const jsonResult = await result.json();
+
+            setCategory(jsonResult);
         }
-        fetchCategory();
-    }, []);
+
+        fetchData();
+    }, [])
+
+    //  
 
     return (
         <>
@@ -37,7 +41,23 @@ const Navigation = () => {
                                     <span className="icon2 ml-2">{isOpenSidebar === true ? <FaAngleDown /> : <FaAngleRight />}</span>
                                 </Button>
                                 <div className={`sidebarNav ${isOpenSidebar === true ? 'open' : ''}`}>
-                                    <ul>
+
+                                    {
+                                        category.map(data => <ul>
+                                            <li key={data._id} className="d-flex align-items-center">
+                                                <img src={data.images} className="catIconImg" />
+                                                <Link><Button>{data.name} </Button></Link>
+                                                <FaAngleRight className="ml-auto" />
+                                                <div className="submenu">
+                                                    <Link><Button>Shirt</Button></Link>
+                                                    <Link><Button>T-Shirt</Button></Link>
+                                                    <Link><Button>Pant</Button></Link>
+                                                </div>
+                                            </li>
+                                        </ul>)
+                                    }
+
+                                    {/* <ul>
                                         <li>
                                             <Link><Button>Men <FaAngleRight className="ml-auto" /></Button></Link>
                                             <div className="submenu">
@@ -88,7 +108,7 @@ const Navigation = () => {
                                                 <Link><Button>Pant</Button></Link>
                                             </div>
                                         </li>
-                                    </ul>
+                                    </ul> */}
                                 </div>
                             </div>
                         </div>

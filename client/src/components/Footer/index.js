@@ -83,15 +83,13 @@ const Footer = () => {
                                 <li><Link>Underwear</Link></li>
                                 <li><Link>Hoodies & Sweatshirts</Link></li>
                                 <li><Link>Suits</Link></li>
-                                <li><Link>Sweaters</Link></li>
-                                <li><Link>Socks</Link></li>
                             </ul>
                         </div>
                     </div>
 
                     <div className="copyright mt-3 pb-3 pt-3 d-flex">
                         <p className="mb-0">© Copyright 2024. All rights reserved</p>
-                        <ul className="list list-inline ml-auto mb-0">
+                        <ul className="list list-inline ml-auto mb-0 socials">
                             <li className="list-inline-item d-flex">
                                 <Link to='#'><FaFacebookF /></Link>
                                 <Link to='#'><AiFillInstagram /></Link>

@@ -94,7 +94,7 @@ router.delete('/:id', async (req, res) => {
 
     if (!deletedUser) {
         res.status(400).json({
-            message: 'Category not found',
+            message: 'Category not found!',
             success: false
         });
     }
@@ -141,7 +141,7 @@ router.put('/:id', async (req, res) => {
 
     if (!category) {
         return res.status(500).json({
-            message: "Category cannot be upload!",
+            message: "Category cannot be updated!",
             success: false
         });
     }

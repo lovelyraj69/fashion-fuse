@@ -9,6 +9,7 @@ import 'swiper/css/navigation';
 import ProductItem from "../../components/ProductItem";
 import sideBannerImg1 from '../../asserts/images/side_banner_img_1.jpeg';
 import sideBannerImg2 from '../../asserts/images/side_banner_img_2.jpeg';
+import sideBannerImg3 from '../../asserts/images/side_banner_img_3.jpeg';
 import offBannerImg1 from '../../asserts/images/off_banner_img1.jpeg';
 import offBannerImg2 from '../../asserts/images/off_banner_img2.jpeg';
 import newsletterImg from '../../asserts/images/newsletter_img.png';
@@ -27,10 +28,13 @@ const Home = () => {
                     <div className="row">
                         <div className="col-sm-3">
                             <div className="banner">
-                                <img className="cursor" src={sideBannerImg2} alt="img" />
+                                <img className="cursor mb-4" src={sideBannerImg2} alt="img" />
                             </div>
                             <div className="banner">
-                                <img className="cursor mt-5" src={sideBannerImg1} alt="img" />
+                                <img className="cursor mt-5 mb-4" src={sideBannerImg1} alt="img" />
+                            </div>
+                            <div className="banner">
+                                <img className="cursor mt-5 mb-4" src={sideBannerImg3} alt="img" />
                             </div>
                         </div>
                         <div className="col-sm-9 productsRow">
@@ -41,6 +45,7 @@ const Home = () => {
                                 </div>
                                 <Button className="viewAllBtn">View All <HiOutlineArrowSmRight /></Button>
                             </div>
+                            
                             <div className="products_row productsRow1 w-100 mt-4">
                                 <Swiper
                                     slidesPerView={4}
@@ -70,6 +75,7 @@ const Home = () => {
                                     </SwiperSlide>
                                 </Swiper>
                             </div>
+
                             <div className="d-flex align-items-center mt-4">
                                 <div className="info w-75">
                                     <h3 className="mb-0 hd">NEW PRODUCTS</h3>

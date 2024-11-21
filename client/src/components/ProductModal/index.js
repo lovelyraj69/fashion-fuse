@@ -7,6 +7,7 @@ import { MdCompareArrows } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
 import { MyContext } from "../../App";
 import ProductZoom from "../ProductZoom";
+import { RiShoppingCart2Line } from "react-icons/ri";
 
 
 
@@ -22,11 +23,11 @@ const ProductModal = () => {
         <>
             <Dialog className="productModal" open={true} onClose={closeProduct} >
                 <Button className='close' onClick={closeProduct} ><IoCloseSharp /></Button>
-                <h4 className="mb-1">Eco-Friendly Organic Cotton T-Shirt</h4>
+                <h4 className="mb-1">The anime printed black t-shir</h4>
                 <div className="d-flex align-items-center">
                     <div className="d-flex align-items-center me-4">
                         <span>Brand :</span>
-                        <span className="ms-2 text-danger"><b>Live's</b></span>
+                        <span className="ms-2 text-danger"><b>Jackey</b></span>
                     </div>
                     <Rating name="read-only" value={5} size="small" precision={0.5} readOnly />
                 </div>
@@ -42,13 +43,13 @@ const ProductModal = () => {
                     <div className="col-md-7">
                         <div className="d-flex lign-items-center info">
                             <span className="oldPrice lg">$9.05</span>
-                            <span className="netPrice lg text-danger">$5.00</span>
+                            <span className="netPrice lg text-danger">$5.25</span>
                         </div>
                         <span className="badge text-success fs-6 ms-3">In Stock</span>
-                        <p className="mt-3 ms-3">100% cotton, available in various colors, comfortable for everyday wear.</p>
-                        <div className="d-flex align-items-center">
+                        <p className="mt-3 ms-3">Ready to wear the good product</p>
+                        <div className="d-flex align-items-center ms-4">
                             <QuantityBox />
-                            <Button className="cartBtn">Add to Cart</Button>
+                            <Button className="cartBtn"><RiShoppingCart2Line className="fs-5 me-2" />Add to Cart</Button>
                         </div>
                         <div className="d-flex align-itmes-center mt-3 ms-3 gap-3">
                             <Button className="text-secondary border-light rounded-0" variant="outlined">

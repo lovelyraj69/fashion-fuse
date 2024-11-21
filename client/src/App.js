@@ -9,19 +9,27 @@ import Footer from './components/Footer';
 import ProductModal from './components/ProductModal';
 import Listing from './pages/Listing';
 import ProductDetails from './pages/ProductDetails';
+import Cart from './pages/Cart';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 
 const MyContext = createContext()
 
 function App() {
 
-  const [productsData, setProdctsData] = useState([]);
-
   const [countryList, setCountryList] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState('');
-  const [openProduct, setOpenProduct] = useState(false);
-  const [isHideSidebarAndHeader, setIsHideSidebarAndHeader] = useState(false);
+  const [openProduct, setOpenProduct] = useState({
+    id: '',
+    open: false
+  });
+  const [isHeaderFooterShow, setIsHeaderFooterShow] = useState(true);
   const [isLogin, setIsLogin] = useState(false);
+  const [isHideSidebarAndHeader, setIsHideSidebarAndHeader] = useState(false);
   const [isToggleSlidebar, setToggleSlidebar] = useState(false);
+
+
+  const [productsData, setProdctsData] = useState([]);
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -37,6 +45,8 @@ function App() {
     open: false
   });
 
+  // fetch country data
+
   useEffect(() => {
     getCountryList('https://countriesnow.space/api/v0.1/countries/');
   }, []);
@@ -48,8 +58,21 @@ function App() {
     })
   }
 
+  // fetch products data
+
   useEffect(() => {
-    const token =  localStorage.getItem('token');
+    const fetchData = async () => {
+      const result = await fetch('http://localhost:8080/api/products');
+      const jsonResult = await result.json();
+
+      setProdctsData(jsonResult);
+    }
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
 
     if (token !== '' && token !== undefined && token !== null) {
       setIsLogin(true);
@@ -61,9 +84,9 @@ function App() {
     } else {
       setIsLogin(false);
     }
-  },[isLogin]);
+  }, [isLogin]);
 
-  const handleClose = (event,reason) => {
+  const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -73,19 +96,12 @@ function App() {
     });
   }
 
-  // const fetchProducts = () => {
-  //   fetchDataFromApi('/api/products')
-  //   .then((res) => {
-  //     setProdctsData(res);
-  //     setProgress(100);
-  //   })
-  // }
-
   const values = {
     baseUrl,
     countryList,
     selectedCountry, setSelectedCountry,
     openProduct, setOpenProduct,
+    isHeaderFooterShow, setIsHeaderFooterShow,
     isHideSidebarAndHeader, setIsHideSidebarAndHeader,
     progress, setProgress,
     alertBox, setAlertBox,
@@ -93,21 +109,29 @@ function App() {
     isToggleSlidebar, setToggleSlidebar,
     user, setUser,
 
-    // productsData, fetchProducts
+    productsData
   }
 
   return (
     <BrowserRouter>
       <MyContext.Provider value={values}>
-        <Header />
+        {
+          isHeaderFooterShow === true && <Header />
+        }
         <Routes>
           <Route path='/' exact={true} element={<Home />} />
           <Route path='/cat/:id' exact={true} element={<Listing />} />
           <Route exact={true} path='/product/:id' element={<ProductDetails />} />
+          <Route exact={true} path='/cart' element={<Cart />} />
+          <Route exact={true} path='/signIn' element={<SignIn />} />
+          <Route exact={true} path='/signUp' element={<SignUp />} />
         </Routes>
-        <Footer />
         {
-          openProduct === true && <ProductModal />
+          isHeaderFooterShow === true && <Footer />
+        }
+
+        {
+          openProduct.open === true && <ProductModal data={productsData} />
         }
       </MyContext.Provider>
     </BrowserRouter>

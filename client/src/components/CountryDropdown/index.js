@@ -50,10 +50,10 @@ const CountryDropdown = () => {
         <>
             <Button className="countryDrop" onClick={() => setIsOpenModal(true)}>
                 <div className="info d-flex flex-column">
-                    <span className='label'>Your location</span>
+                    <span className='label'>Select Your</span>
                     <span className='name'>{context.selectedCountry !== '' ? context.
                           selectedCountry.length > 10 ? context.selectedCountry?.substr(0,10) + '...' : context.
-                          selectedCountry : 'Select a location'}</span>
+                          selectedCountry : 'Location'}</span>
                 </div>
                 <span className='ml-auto'><FaAngleDown /></span>
             </Button>
