@@ -5,14 +5,14 @@ import { FaRegHeart } from "react-icons/fa6";
 import { Button } from '@mui/material';
 import { MyContext } from '../../App';
 import { useContext, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../redux/cartSlice';
+
 
 const ProductItem = ({ itemView }) => {
 
-    // try
-
-    //
-
     const context = useContext(MyContext);
+    const dispatch = useDispatch();
 
     const viewProduct = (id) => {
         context.setOpenProduct({
@@ -43,6 +43,9 @@ const ProductItem = ({ itemView }) => {
                             <div className="d-flex">
                                 <span className="oldPrice">${data.price}</span>
                                 <span className="netPrice text-danger">${data.price}</span>
+                            </div>
+                            <div className='text-end mt-2'>
+                                <Button sx={{ fontSize: "10px" }} className='cartBtn' onClick={() => dispatch(addToCart(data))} >Add To Cart</Button>
                             </div>
                         </div>
                     </div>

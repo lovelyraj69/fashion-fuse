@@ -41,10 +41,10 @@ const HomeCat = () => {
                         className="mySwiper"
                     >
                         {
-                            itemBg.map((item, intex) => {
+                            itemBg.map((item, index) => {
                                 return (
                                     <SwiperSlide>
-                                        <div className="item text-center cursor" style={{ background: item }}>
+                                        <div key={index} className="item text-center cursor" style={{ background: item }}>
                                             <img src="https://img.freepik.com/premium-photo/red-shirt-black-line-check-shirt-wooden
                                                 -background_1059430-93987.jpg?ga=GA1.1.1338062474.1718105273&semt=ais_hybrid" 
                                                 alt="img" />
